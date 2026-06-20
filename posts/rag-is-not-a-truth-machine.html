@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What retrieval-augmented generation changes, what it does not guarantee, and why retrieval quality deserves more scrutiny.">
+  <title>RAG Is Not a Truth Machine — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3"><script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="../index.html">The Nonprofit Margin</a><nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav></header>
+  <main class="article-shell"><article>
+    <header class="article-header">
+      <a class="back-link" href="../index.html">← All field notes</a><p class="eyebrow">RAG · Grounded AI</p>
+      <h1>RAG Is Not a Truth Machine</h1>
+      <p class="dek">Retrieval narrows the evidence available to a language model. It does not guarantee that the right evidence was found or interpreted correctly.</p>
+      <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
+    </header>
+    <div class="article-body">
+      <p class="lede">Retrieval-augmented generation improves the conditions under which a model answers. It does not remove the need to evaluate the answer.</p>
+
+      <p>I built <a href="https://github.com/Alissa-King/doc-rag-app">Chat with Your Documents</a> to make the pattern concrete. A user uploads a PDF, the app extracts and divides its text, retrieves passages related to a question, and gives those passages to Gemini as context for a response.</p>
+
+      <p>This is a meaningful improvement over asking a general model to answer from memory. The response is constrained by a user-selected source. But the system still contains several stages where relevant evidence can be lost, distorted, or overinterpreted.</p>
+
+      <h2>Retrieval is an information bottleneck</h2>
+
+      <p>The app divides extracted text into 500-word chunks with 50 words of overlap. It embeds each chunk locally with the normalized <code>all-MiniLM-L6-v2</code> sentence-transformer model. A question is embedded the same way, and the five chunks with the highest cosine similarity are selected.</p>
+
+      <div class="formula">PDF → chunks → embeddings → <span>top five excerpts</span> → answer</div>
+
+      <p>By the time the language model sees the document, most of the document is absent. That is the point—focused context is more useful than an indiscriminate wall of text—but it means retrieval quality sets an upper bound on answer quality.</p>
+
+      <p>If the relevant passage ranks sixth, the generator never receives it. If a table is poorly extracted, no embedding can restore its structure. If the question uses terminology far removed from the document, semantic similarity may select adjacent rather than decisive evidence.</p>
+
+      <h2>Chunking creates boundaries the document did not have</h2>
+
+      <p>Fixed-size chunks are simple and effective, but meaning does not arrive in 500-word units. A definition may appear in one section and its exception in another. A heading may apply to several paragraphs. Footnotes, tables, and page layout may carry relationships that plain extracted text does not preserve.</p>
+
+      <p>Overlap reduces the chance that a sentence is cut away from its immediate context. It does not solve relationships that span pages or depend on document structure. More advanced systems may use headings, pages, tables, metadata, reranking, or query expansion. Each addition creates new choices to test.</p>
+
+      <h2>“Answer only from context” is a control, not a guarantee</h2>
+
+      <p>The app’s system instruction tells Gemini to use only the supplied excerpts and to say when the answer is not present. That is an important behavioral constraint. It is not a mathematical proof that every claim is supported.</p>
+
+      <p>The generator may combine excerpts incorrectly, infer beyond them, or state an ambiguous passage too confidently. The retrieved text itself can contain instructions that were never intended for the model. In higher-stakes systems, source display, quotation-level citations, adversarial testing, and explicit refusal evaluation should accompany the prompt.</p>
+
+      <aside class="callout"><p class="callout-label">Two failures to separate</p><p>Retrieval failure: the system did not supply the needed evidence. Generation failure: the evidence was supplied, but the answer misused it. Improvement depends on knowing which one occurred.</p></aside>
+
+      <h2>Conversation memory can move the question</h2>
+
+      <p>The app retains the last 20 conversation turns so follow-up questions can remain coherent. That helps users ask “What does that mean?” without restating the subject. It also introduces another source of influence: previous answers may shape later questions even if an earlier response was incomplete.</p>
+
+      <p>Evaluation should therefore include multi-turn conversations, document changes, ambiguous references, unsupported questions, and cases where the correct response is “the document does not say.” Abstention is a feature when the evidence is missing.</p>
+
+      <h2>Grounded is not the same as correct</h2>
+
+      <p>A RAG system can make answers more inspectable by tying them to a bounded source. Its strongest promise is not truth; it is provenance. Users can compare the answer with the passages that informed it—provided the interface exposes those passages clearly.</p>
+
+      <aside class="callout dark"><p class="callout-label">The responsible claim</p><p>RAG can reduce unsupported generation and improve access to source material. It cannot certify the source, guarantee retrieval completeness, or replace review where errors carry meaningful consequences.</p></aside>
+
+      <p>The next useful improvements to this project are therefore evaluative: display source excerpts with page metadata, build a question-and-answer test set, measure retrieval recall separately from answer quality, and test refusal behavior. Better generation may help. Better evidence about the full pipeline will help more.</p>
+
+      <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/doc-rag-app">View the RAG app on GitHub ↗</a></div>
+    </div>
+  </article></main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer><div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- Relevant excerpt not found. This comment will hallucinate responsibly. -->
+</body>
+</html>

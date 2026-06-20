@@ -26,6 +26,9 @@ Models are useful. Spreadsheets are useful. Neither has agreed to accept fiducia
 - [Backtests Are Optimists With Excellent Formatting](https://alissa-king.github.io/the-nonprofit-margin/posts/backtests-are-optimists.html) — Look-ahead bias, transaction costs, walk-forward testing, and other ways reality eventually joins the meeting.
 - [Your Form 990 Is Not Your Organization](https://alissa-king.github.io/the-nonprofit-margin/posts/your-990-is-not-your-organization.html) — Why a financial health score should begin a conversation rather than end one.
 - [When 70% Doesn’t Mean 70%](https://alissa-king.github.io/the-nonprofit-margin/posts/confidence-without-calibration.html) — Why ranking risk and measuring probability are different jobs.
+- [An Audit Finding Is Not a Character Reference](https://alissa-king.github.io/the-nonprofit-margin/posts/audit-finding-not-character-reference.html) — Using predictive audit analytics for triage without turning risk into institutional judgment.
+- [RAG Is Not a Truth Machine](https://alissa-king.github.io/the-nonprofit-margin/posts/rag-is-not-a-truth-machine.html) — Why grounded generation still depends on retrieval, context, and review.
+- [The Dashboard Is Not the Economy](https://alissa-king.github.io/the-nonprofit-margin/posts/dashboard-is-not-the-economy.html) — The analytical choices hidden inside a macroeconomic chart.
 
 ## About Alissa
 

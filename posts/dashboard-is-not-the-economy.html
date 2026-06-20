@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Why economic dashboards are analytical constructions shaped by series definitions, frequency, transformations, revisions, and omissions.">
+  <title>The Dashboard Is Not the Economy — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3"><script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="../index.html">The Nonprofit Margin</a><nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav></header>
+  <main class="article-shell"><article>
+    <header class="article-header">
+      <a class="back-link" href="../index.html">← All field notes</a><p class="eyebrow">Economic data · Dashboards</p>
+      <h1>The Dashboard Is Not the Economy</h1>
+      <p class="dek">Every macroeconomic chart reflects decisions about series definitions, frequency, transformations, revisions, and what remains outside the frame.</p>
+      <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
+    </header>
+    <div class="article-body">
+      <p class="lede">A dashboard organizes economic data. It also organizes attention.</p>
+
+      <p>My <a href="https://github.com/Alissa-King/Economic-Indicators-Dashboard">Economic Indicators Dashboard</a> collects four widely followed FRED series: gross domestic product, unemployment, the consumer price index, and the federal funds rate. It stores observations in SQLite and presents interactive Plotly and Dash views from 2000 forward.</p>
+
+      <p>The project is useful partly because it exposes the choices that sit between an API response and an apparently simple line chart.</p>
+
+      <h2>The labels are already analysis</h2>
+
+      <p>The dashboard maps FRED’s <code>CPIAUCSL</code> series to “Inflation Rate.” But CPIAUCSL is a consumer price index level, not itself an inflation rate. Inflation requires a transformation, such as the percentage change over twelve months. The processing pipeline calculates that year-over-year change as a separate field.</p>
+
+      <p>This distinction is easy to lose in an interface. A rising price index and a rising inflation rate are not the same statement. Prices can continue increasing while the rate of increase slows. A precise series identifier helps prevent a familiar chart from carrying the wrong interpretation.</p>
+
+      <aside class="callout"><p class="callout-label">Before reading the line</p><p>Ask what the value represents, whether it is a level or a rate of change, whether it is nominal or real, and whether it is seasonally adjusted.</p></aside>
+
+      <h2>Four series do not share one clock</h2>
+
+      <p>GDP is published quarterly. Unemployment, CPI, and the effective federal funds rate are available at different native frequencies. The project resamples the combined data to month-end and forward-fills missing values.</p>
+
+      <p>That creates a convenient common timeline, but convenience has meaning. A quarterly GDP value repeated across subsequent monthly rows does not become monthly GDP. It remains a quarterly observation carried forward until another is available.</p>
+
+      <p>Mixed-frequency dashboards should make that distinction visible through labels, tooltips, stepped lines, or release-date annotations. Otherwise the smoothness of the interface may imply a measurement precision the source does not provide.</p>
+
+      <h2>Latest available is not the same as real time</h2>
+
+      <p>FRED provides timely access to economic series, but many underlying observations are revised. GDP estimates develop across releases. Seasonal adjustment can change. Historical values may look different now than they did to a decision-maker at the time.</p>
+
+      <p>A dashboard that fetches the current series usually shows today’s best historical record, not necessarily the information set available on each historical date. Forecast evaluation and policy analysis may require vintage data to avoid hindsight entering through revisions.</p>
+
+      <h2>Shared charts can create false comparisons</h2>
+
+      <p>GDP, unemployment, CPI, and the federal funds rate use different units and scales. Putting all four on one axis can make the largest-valued series visually dominant while compressing meaningful movement in the others.</p>
+
+      <p>Separate panels preserve native units. Indexed values can compare relative change. Standardized values can compare deviations from each series’ history. None is universally correct; each answers a different question. The transformation should follow the question rather than the desire to make four lines coexist peacefully.</p>
+
+      <h2>The missing indicators are part of the story</h2>
+
+      <p>GDP, unemployment, inflation, and interest rates are central measures. They do not fully describe household well-being, distribution, housing affordability, labor-force participation, underemployment, wealth, regional variation, or the experience of nonprofit service providers.</p>
+
+      <p>A national unemployment rate can improve while particular communities face persistent exclusion. GDP can grow while household costs outpace incomes. An aggregate is not misleading because it is aggregate; it becomes misleading when its scope disappears.</p>
+
+      <aside class="callout dark"><p class="callout-label">The dashboard rule</p><p>A chart should state what is measured, how it was transformed, when it was observed, and which question it cannot answer.</p></aside>
+
+      <h2>Good dashboards reveal their seams</h2>
+
+      <p>The next version of this project could make those analytical choices explicit: display FRED series IDs and units, separate levels from rates of change, identify native frequency, mark recessions and releases, provide revision notes, and offer multiple comparison modes.</p>
+
+      <p>The point is not to burden every chart with a methods appendix. It is to make the path from source to conclusion inspectable. A dashboard earns trust when users can see where the data ends and interpretation begins.</p>
+
+      <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/Economic-Indicators-Dashboard">View the dashboard on GitHub ↗</a></div>
+    </div>
+  </article></main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer><div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- Aggregate confidence may conceal local uncertainty. -->
+</body>
+</html>

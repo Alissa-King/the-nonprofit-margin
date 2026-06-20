@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How predictive audit analytics can support risk triage without turning model scores into judgments about organizations.">
+  <title>An Audit Finding Is Not a Character Reference — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3"><script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="../index.html">The Nonprofit Margin</a><nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav></header>
+  <main class="article-shell"><article>
+    <header class="article-header">
+      <a class="back-link" href="../index.html">← All field notes</a><p class="eyebrow">Audit analytics · Governance</p>
+      <h1>An Audit Finding Is Not a Character Reference</h1>
+      <p class="dek">Predictive triage can help direct limited oversight capacity without turning a risk estimate into a judgment about the institution.</p>
+      <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
+    </header>
+    <div class="article-body">
+      <p class="lede">Audit findings are outcomes of a formal review process. Predicting them requires care about time, rarity, interpretation, and the consequences of being wrong.</p>
+
+      <p>My <a href="https://github.com/Alissa-King/DBA-FAC">DBA-FAC project</a> uses Federal Audit Clearinghouse data to study whether information available before audit close can help identify elevated risk of a Single Audit finding. The intended use is triage: helping reviewers decide where limited attention may be most valuable.</p>
+
+      <p>That purpose matters. A triage model does not determine whether a finding exists, whether an organization is well managed, or whether its mission deserves support. It estimates which records resemble patterns historically associated with findings. Those are different claims, even when a dashboard places them close together.</p>
+
+      <h2>Time is part of the model</h2>
+
+      <p>A random train-test split can let earlier and later audits appear on both sides of evaluation. That risks giving the model indirect access to patterns from the future, particularly when organizations recur across years.</p>
+
+      <p>DBA-FAC instead uses time-series cross-validation and a final forward-year holdout. Prior-finding features are created within each auditee by shifting the observed outcome one year, so last year’s result may inform this year’s estimate without allowing this year’s result to leak into its own prediction.</p>
+
+      <aside class="callout"><p class="callout-label">The practical test</p><p>Could every feature have been known at the moment the score was supposed to be used? If not, the model is explaining an outcome, not forecasting it.</p></aside>
+
+      <h2>Rare outcomes change the scorecard</h2>
+
+      <p>Findings are relatively uncommon in the project’s target population. With an imbalanced outcome, accuracy can look strong even when a model misses most of the cases that matter. Predicting “no finding” for nearly everyone is efficient in the way an unplugged smoke detector is quiet.</p>
+
+      <p>The project therefore reports ROC-AUC alongside precision-recall performance, calibration, confusion-matrix counts, and threshold-specific recall and precision. Its default triage threshold targets at least 80% recall: an explicit preference for finding more of the positive cases, while accepting that additional audits will be flagged unnecessarily.</p>
+
+      <p>That tradeoff should be governed, not hidden. A missed high-risk audit and an unnecessary review have different consequences. The appropriate threshold depends on reviewer capacity, the cost of follow-up, and the harm created when an organization is flagged.</p>
+
+      <h2>More features are a research question</h2>
+
+      <p>The project compares a profile-only baseline with an enriched feature set that adds program-level information and lagged finding history. This is not simply a contest to produce the largest AUC. It asks whether added complexity provides enough incremental signal to justify collecting, maintaining, and explaining those variables.</p>
+
+      <p>Prior findings may be strongly predictive, but they also carry institutional history forward. That can be useful for allocating oversight, and it can cause organizations to remain under scrutiny after conditions change. A model should therefore expose how much a prior finding contributes and support periodic reassessment rather than treating history as identity.</p>
+
+      <h2>SHAP explains the model, not the institution</h2>
+
+      <p>DBA-FAC uses SHAP values to summarize global feature importance and provide per-audit explanations for the gradient-boosting model. These explanations answer a narrow question: which features pushed this model’s score higher or lower?</p>
+
+      <p>They do not establish why a finding occurred. A feature can be predictive because it reflects complexity, reporting patterns, selection effects, or other variables the model never observes. “Associated with the score” must not quietly become “caused the problem.”</p>
+
+      <h2>A flag is the beginning of review</h2>
+
+      <p>A responsible workflow would pair a risk score with the model version, data period, threshold, prominent drivers, known limitations, and an opportunity for human review. It would monitor performance over time and examine whether false-positive rates differ across meaningful groups.</p>
+
+      <aside class="callout dark"><p class="callout-label">The governance boundary</p><p>Use the model to prioritize questions, not to assign character. A predicted finding is not a finding, and a finding is not a complete account of an organization.</p></aside>
+
+      <p>The public repository includes synthetic demonstration data and a bounded FAC pilot alongside the ingestion and modeling pipeline. Those artifacts make the workflow inspectable; they should not be mistaken for final evidence from a full production population.</p>
+
+      <p>Audit analytics is most defensible when it makes oversight more focused and more transparent. The goal is not to automate suspicion. It is to make the allocation of attention easier to examine.</p>
+
+      <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/DBA-FAC">View DBA-FAC on GitHub ↗</a></div>
+    </div>
+  </article></main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer><div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- Finding: this comment exists. Management response: noted. -->
+</body>
+</html>
