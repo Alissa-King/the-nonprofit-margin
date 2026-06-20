@@ -1,20 +1,36 @@
 # The Nonprofit Margin
 
-Practical finance, forecasting, and explainable AI for nonprofit leaders.
+**Finance, data science, and decisions that keep the mission moving.**
 
-This is a dependency-free static site designed for GitHub Pages. Open `index.html` locally to preview it.
+[Read the blog →](https://alissa-king.github.io/the-nonprofit-margin/)
 
-## Publishing
+The Nonprofit Margin is about using data to help mission-driven organizations make earlier, clearer decisions—without asking a model to become the adult in the room.
 
-The included GitHub Actions workflow deploys the site whenever `main` is updated. In the GitHub repository, open **Settings → Pages** and select **GitHub Actions** as the source if it is not selected automatically.
+I write about nonprofit financial resilience, explainable AI, forecasting, governance, and the quiet assumptions hiding inside confident-looking dashboards. The code matters. So do the people expected to act on it.
 
-The expected public URL is:
+## The working theory
 
-`https://alissa-king.github.io/the-nonprofit-margin/`
+Good analytics should:
 
-## Writing a new post
+- make uncertainty easier to discuss, not easier to conceal;
+- distinguish an early-warning signal from a prophecy;
+- explain enough of its reasoning to be challenged;
+- preserve room for context, judgment, and inconvenient facts; and
+- survive contact with chronology.
 
-1. Add a new HTML file under `posts/`.
-2. Copy the article structure from the existing post.
-3. Add the post to the home page.
-4. Commit and push to `main`.
+Models are useful. Spreadsheets are useful. Neither has agreed to accept fiduciary responsibility.
+
+## Field notes
+
+- [From Form 990 to Early-Warning Signal](https://alissa-king.github.io/the-nonprofit-margin/posts/from-form-990-to-early-warning-signal.html) — Building a calibrated, explainable distress index without giving it more authority than it deserves.
+- [Backtests Are Optimists With Excellent Formatting](https://alissa-king.github.io/the-nonprofit-margin/posts/backtests-are-optimists.html) — Look-ahead bias, transaction costs, walk-forward testing, and other ways reality eventually joins the meeting.
+- [Your Form 990 Is Not Your Organization](https://alissa-king.github.io/the-nonprofit-margin/posts/your-990-is-not-your-organization.html) — Why a financial health score should begin a conversation rather than end one.
+- [Confidence Without Calibration Is Just a Spreadsheet in a Blazer](https://alissa-king.github.io/the-nonprofit-margin/posts/confidence-without-calibration.html) — Why ranking risk and measuring probability are different jobs.
+
+## About Alissa
+
+I’m [Alissa King](https://github.com/Alissa-King), a finance and data science professional working at the intersection of analytical modeling, nonprofit leadership, and practical decision support.
+
+This blog documents what I’m building, what the evidence supports, and—often more interestingly—what it does not.
+
+No black boxes are worshipped here. Some are inspected politely.
