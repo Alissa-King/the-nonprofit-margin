@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Why risk models need calibrated probabilities, not only strong rankings, before their outputs belong in governance decisions.">
+  <title>Confidence Without Calibration Is Just a Spreadsheet in a Blazer — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3"><script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="../index.html">The Nonprofit Margin</a><nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav></header>
+  <main class="article-shell"><article>
+    <header class="article-header">
+      <a class="back-link" href="../index.html">← All field notes</a><p class="eyebrow">Machine learning · Calibration</p>
+      <h1>Confidence Without Calibration Is Just a Spreadsheet in a Blazer</h1>
+      <p class="dek">A model can rank risk correctly and still attach probabilities nobody should put in a board packet.</p>
+      <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 6 min read</span></div>
+    </header>
+    <div class="article-body">
+      <p class="lede">“This organization has a 70% probability of distress” sounds precise. Precision, unfortunately, is available without accuracy.</p>
+
+      <p>Many classification models produce values between zero and one. It is tempting to read those values as probabilities. Sometimes they behave that way. Sometimes 0.70 means only “more model-ish confidence than 0.55,” which is a less compelling sentence for the finance committee.</p>
+
+      <p>In the <a href="https://github.com/Alissa-King/BEACON">BEACON Framework</a>, I needed the Distress Index to represent a defensible estimated probability, not a confidence-shaped decoration. That required separating two ideas that are often blended together: discrimination and calibration.</p>
+
+      <h2>Ranking is not measuring</h2>
+
+      <p>Discrimination asks whether the model tends to rank distressed organizations above non-distressed organizations. AUC-ROC summarizes that ability across thresholds. If we randomly select one distressed and one non-distressed case, AUC corresponds to the chance that the model assigns the distressed case a higher score.</p>
+
+      <p>A model can be good at this ordering while being poor at probability. Imagine it assigns 0.90 to a group in which distress occurs only half the time. The model may still rank those cases above safer ones, but its numeric confidence is badly overstated.</p>
+
+      <p>Calibration asks a more literal question: among cases assigned a probability near 0.70, does the event occur about 70% of the time?</p>
+
+      <div class="formula"><span>Good ranking</span> ≠ trustworthy probability</div>
+
+      <p>The distinction matters whenever the number influences action. Thresholds, reserves, monitoring intensity, and escalation plans all depend on how seriously users interpret a probability. A model that yells “90%” whenever it feels strongly is not conservative. It is a colleague who has discovered percentages.</p>
+
+      <h2>Calibration needs its own data</h2>
+
+      <p>BEACON trains candidate models on fiscal years 2013–2019. It reserves 2020–2021 for calibration and keeps 2022–2023 as the final test period. The random forest is fitted on the training window, then its raw scores on the calibration window are paired with observed outcomes.</p>
+
+      <p>An isotonic-regression calibrator learns a monotonic mapping from raw model scores to probabilities that better match observed frequencies. “Monotonic” preserves the ordering: higher raw risk cannot be mapped below lower raw risk. The mapping can still bend, flatten, or stretch the score scale where the model was overconfident or underconfident.</p>
+
+      <p>The calibrator must not be fitted on the final test set. Doing so would let the model consult the answer key while we evaluate its handwriting.</p>
+
+      <h2>Measure the probability, not just the label</h2>
+
+      <p>Accuracy, precision, recall, and F1 evaluate predicted classes at a chosen threshold. Calibration needs a metric that evaluates the probability itself. BEACON reports the Brier score: the mean squared difference between predicted probabilities and binary outcomes.</p>
+
+      <div class="formula" role="img" aria-label="Brier score equals the average squared difference between probability and outcome">
+        Brier = mean[(probability − outcome)<sup>2</sup>]
+      </div>
+
+      <p>Lower is better. Confident wrong predictions receive a larger penalty. In the current framework results, isotonic calibration improves the random forest’s Brier score from 0.229 to 0.195 on the holdout evaluation reported by the project.</p>
+
+      <p>That improvement does not certify the model for every setting. A Brier score depends on event prevalence and the population being evaluated. It should be compared with appropriate baselines and examined alongside a reliability curve, discrimination metrics, subgroup behavior, and the consequences of errors.</p>
+
+      <h2>A calibrated model can still be wrong</h2>
+
+      <p>Calibration describes groups of predictions, not clairvoyance about one organization. If ten comparable organizations receive a 70% estimate and seven experience distress, the model may be well calibrated even though it was “wrong” for three of them. Individual outcomes remain uncertain by definition.</p>
+
+      <p>Calibration can also drift. Funding policy, inflation, reporting practices, economic shocks, and organizational behavior change the relationship between financial indicators and distress. A mapping learned in one period may not remain reliable indefinitely. Probabilities require monitoring, not ceremonial lamination.</p>
+
+      <aside class="callout"><p class="callout-label">Board translation</p><p>A 70% estimate means “cases with similar modeled characteristics have shown a high observed rate of distress,” not “this organization is 70% doomed.” The latter is not a statistical term, despite its efficiency.</p></aside>
+
+      <h2>Thresholds are decisions in disguise</h2>
+
+      <p>Even a calibrated probability does not tell leaders what action to take. That requires comparing the consequences of false alarms and missed distress, the cost and reversibility of an intervention, available capacity, and the organization’s tolerance for risk.</p>
+
+      <p>A low-cost monitoring step may be justified at a lower threshold than an expensive restructuring decision. The probability belongs to the model. The threshold belongs to governance.</p>
+
+      <aside class="callout dark"><p class="callout-label">The governance rule</p><p>Do not ask whether a probability feels confident. Ask how it was calibrated, on which period and population, against what baseline, and what decision the threshold is meant to support.</p></aside>
+
+      <p>A model earns trust by being specific about uncertainty, not by eliminating it from the slide deck. Calibration is one of the quiet disciplines that makes that honesty possible. It will never be the flashiest chart in the room. This may be why it is doing useful work.</p>
+
+      <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/BEACON">View BEACON on GitHub ↗</a></div>
+    </div>
+  </article></main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer><div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- Probability of finding this comment conditional on opening DevTools: high. -->
+</body>
+</html>

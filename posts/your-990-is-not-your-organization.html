@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How to use nonprofit financial health scores without confusing a Form 990 with the organization behind it.">
+  <title>Your Form 990 Is Not Your Organization — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3"><script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="../index.html">The Nonprofit Margin</a><nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav></header>
+  <main class="article-shell"><article>
+    <header class="article-header">
+      <a class="back-link" href="../index.html">← All field notes</a><p class="eyebrow">Nonprofit finance · Measurement</p>
+      <h1>Your Form 990 Is Not Your Organization</h1>
+      <p class="dek">A financial health score can start a useful conversation. It should not be allowed to finish one.</p>
+      <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
+    </header>
+    <div class="article-body">
+      <p class="lede">A Form 990 contains facts about a nonprofit. The trouble begins when we ask it to contain the nonprofit.</p>
+
+      <p>The filing can tell us about revenue, expenses, assets, liabilities, and program spending. It cannot tell us whether a housing program preserved dignity during an eviction crisis, whether restricted grants can cover next month’s payroll, or whether a leadership team is navigating a temporary shock with unusual competence.</p>
+
+      <p>I built the <a href="https://github.com/Alissa-King/990-Analyzer">990 Agency Health Analyzer</a> to turn public filings into a fast, readable financial report. Search for an organization and it calculates ratios, charts multiple years, and produces a 0–100 health score. This makes the filing more accessible. It does not make the filing omniscient. We checked.</p>
+
+      <h2>What the score actually measures</h2>
+
+      <p>The current scoring model is an explicit heuristic based primarily on the latest filing. Program expense ratio contributes up to 30 points; operating reserves, 25; surplus margin, 20; revenue trend, 15; and liabilities-to-assets, 10.</p>
+
+      <div class="formula" role="img" aria-label="Health score combines program spending, reserves, margin, trend, and liabilities">
+        30 Program + 25 Reserves + 20 Margin + 15 Trend + 10 Liabilities = <span>100</span>
+      </div>
+
+      <p>The virtue of this construction is transparency. A user can see what the score rewards and challenge the assumptions. The limitation is equally important: the weights are design choices, not natural laws discovered beneath a stack of audited statements.</p>
+
+      <p>A composite score compresses several dimensions into one comparable signal. Compression is useful. It is also lossy. Anyone who has reduced a family vacation to its average temperature understands the issue.</p>
+
+      <h2>Program ratios need context</h2>
+
+      <p>The analyzer awards more points as the share of expenses devoted to programs rises, using 75% as a visible benchmark. That ratio can be a useful prompt, but it should not become a morality meter.</p>
+
+      <p>Administration includes financial controls, technology, staff development, evaluation, cybersecurity, compliance, and other infrastructure required to deliver programs reliably. A young organization building systems may look less “efficient” in one year while becoming more resilient. A mature organization may classify shared costs differently. A program ratio can flag a question; it cannot answer whether spending was wise.</p>
+
+      <aside class="callout"><p class="callout-label">Ask after scoring</p><p>What changed operationally? Which costs are fixed? How are shared expenses allocated? Did the organization underinvest in infrastructure to preserve an attractive ratio?</p></aside>
+
+      <h2>Reserves are runway, with footnotes</h2>
+
+      <p>The analyzer estimates months of operating reserves by dividing net assets by average monthly expenses. Three to six months receives strong marks, and six or more receives the maximum reserve score.</p>
+
+      <p>That is useful as a screening measure, but net assets are not necessarily cash. Some may be restricted, tied up in property, or otherwise unavailable for general operations. Expense patterns may also be seasonal. Twelve months of average expense can blur a grant cycle that produces three months of white-knuckle liquidity.</p>
+
+      <p>A stronger conversation pairs the ratio with unrestricted liquid net assets, a rolling cash forecast, receivable timing, funding restrictions, and access to credit. The score points toward liquidity. It does not personally accompany the deposit to the bank.</p>
+
+      <h2>A surplus can be healthy—or merely visiting</h2>
+
+      <p>The score rewards positive operating margin and recent revenue growth. Sustained surpluses create capacity to absorb shocks and invest. Yet a single year may reflect a capital campaign, a one-time grant, delayed spending, or timing differences. Revenue growth may arrive with new obligations and no contribution to unrestricted margin.</p>
+
+      <p>Conversely, a planned deficit can be a responsible use of board-designated reserves during a transition. The relevant questions are whether management anticipated it, whether liquidity can support it, and whether the underlying model returns to balance. “Negative” is an arithmetic description before it is a governance conclusion.</p>
+
+      <h2>Debt also refuses to be one thing</h2>
+
+      <p>Lower liabilities relative to assets receive more points. High leverage can certainly limit options. But debt used to acquire a productive facility is different from debt used to cover recurring payroll. Terms, covenants, maturity, interest rate, and the liquidity of the related assets all matter.</p>
+
+      <p>A ratio notices the amount. Judgment must interpret the structure.</p>
+
+      <h2>Use the score as an interface</h2>
+
+      <p>The most defensible role for a financial health score is triage. It can help a board member, donor, researcher, or executive notice patterns quickly: weakening margin, declining revenue, thin reserves, growing leverage, or a change in program spending.</p>
+
+      <p>From there, users should inspect the multi-year tables, read the filing, reconcile unusual items, and ask the organization for current information. Form 990 data is historical and can arrive long after the period it describes. A beautifully calculated answer to an old question remains an old answer.</p>
+
+      <aside class="callout dark"><p class="callout-label">The responsible claim</p><p>The score summarizes selected financial indicators from public filings. It does not rate mission effectiveness, management quality, legitimacy, or worthiness of support.</p></aside>
+
+      <p>Good analytical tools reduce the cost of asking better questions. They should not reduce the number of questions until only one large number remains.</p>
+
+      <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/990-Analyzer">View 990 Analyzer on GitHub ↗</a></div>
+    </div>
+  </article></main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer><div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- This comment is unrestricted. Please spend it responsibly. -->
+</body>
+</html>

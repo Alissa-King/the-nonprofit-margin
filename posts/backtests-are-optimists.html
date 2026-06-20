@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What building an honest strategy backtester teaches us about look-ahead bias, costs, optimization, and out-of-sample evidence.">
+  <title>Backtests Are Optimists With Excellent Formatting — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3">
+  <script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="../index.html">The Nonprofit Margin</a>
+    <nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav>
+  </header>
+  <main class="article-shell">
+    <article>
+      <header class="article-header">
+        <a class="back-link" href="../index.html">← All field notes</a>
+        <p class="eyebrow">Markets · Model validation</p>
+        <h1>Backtests Are Optimists With Excellent Formatting</h1>
+        <p class="dek">A strategy can predict the past with astonishing confidence. The future, citing legal advice, has declined to comment.</p>
+        <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
+      </header>
+      <div class="article-body">
+        <p class="lede">Every beautiful equity curve is a story about what would have happened—provided we already knew enough to write the story.</p>
+
+        <p>Backtesting is indispensable. It is also unusually good at turning small assumptions into large fortunes, particularly when those fortunes never have to leave the browser. I built my <a href="https://github.com/Alissa-King/algo-backtester">Algo Backtester</a> to make those assumptions visible: a custom vectorized engine, transparent execution rules, transaction costs, benchmark comparisons, parameter sweeps, and anchored walk-forward analysis.</p>
+
+        <p>The goal was not to discover a money printer. The facilities team has asked us to stop calling it that. The goal was to build a system that makes a strategy work harder for the privilege of looking convincing.</p>
+
+        <h2>The first lie happens one bar early</h2>
+
+        <p>Suppose a moving-average crossover is calculated using Tuesday’s closing price. A careless backtest may act as though the strategy also traded at Tuesday’s close. It has used information from the completed bar to obtain a price from that same bar—a modest feat of time travel, and still unavailable from most retail brokers.</p>
+
+        <p>The engine shifts each target position forward by one bar. A signal decided at the close of bar <em>t</em> fills on bar <em>t+1</em>, and returns are applied only after that shift. It is a small implementation detail with an outsized moral: information must exist before a decision can use it.</p>
+
+        <aside class="callout">
+          <p class="callout-label">Useful suspicion</p>
+          <p>If moving a signal forward one period destroys a strategy, the strategy may have been powered by hindsight. Hindsight remains the market’s best-performing asset class.</p>
+        </aside>
+
+        <h2>Friction would like a word</h2>
+
+        <p>A strategy that changes positions frequently does not trade for free. The backtester charges configurable basis-point costs against turnover—the absolute change in position on each bar. This means the strategy pays when it enters, exits, or changes exposure.</p>
+
+        <p>That does not reproduce every detail of live execution. Spread, slippage, market impact, taxes, borrow constraints, and partial fills can all matter. But a frictionless backtest is not an optimistic estimate of reality. It is a different universe with unusually generous market makers.</p>
+
+        <p>Costs are especially revealing during parameter optimization. A fast-moving strategy may produce more gross opportunity and more turnover. Once costs arrive, looking irritatingly real, the apparent edge can shrink or reverse.</p>
+
+        <h2>The optimizer always finds something</h2>
+
+        <p>Give an optimizer enough parameter values and enough historical data, and it will locate a setting with an impressive Sharpe ratio. This does not require fraud or incompetence. It requires only repeated searching and the ordinary human desire to keep the attractive result.</p>
+
+        <p>The backtester therefore includes anchored walk-forward analysis. For each fold, it searches candidate parameter values using all prior in-sample data, selects the best in-sample setting, then applies that setting to the next unseen period. The out-of-sample returns from those folds are stitched into one curve.</p>
+
+        <div class="formula" role="img" aria-label="Past data selects a parameter, then the next unseen period tests it">
+          Past data → choose parameter → <span>next unseen period</span>
+        </div>
+
+        <p>This changes the question. Instead of asking, “Which parameter best explains the full history?” it asks, “When I chose a parameter using only information available then, what happened next?” The second question is less glamorous. It is also much closer to the one investors actually face.</p>
+
+        <h2>One metric cannot chaperone the whole strategy</h2>
+
+        <p>Total return is easy to admire and easy to misunderstand. The engine also reports CAGR, volatility, Sharpe, Sortino, maximum drawdown, exposure, win rate, and completed trades, all beside a buy-and-hold benchmark.</p>
+
+        <p>Each metric describes a different inconvenience. Sharpe relates return to overall volatility. Sortino focuses on downside volatility. Maximum drawdown asks how unpleasant the journey became before the final value appeared. Exposure helps distinguish skill from simply spending more time in the market. The benchmark asks the impolite but necessary question: was all this machinery better than doing less?</p>
+
+        <p>No single number settles the case. A high Sharpe can hide a short sample. A modest drawdown can result from low exposure. A high win rate can coexist with occasional catastrophic losses. Metrics are witnesses, not a jury.</p>
+
+        <h2>Out-of-sample is evidence, not immunity</h2>
+
+        <p>Walk-forward testing is stronger than fitting and evaluating on the same history, but it does not make a strategy future-proof. Market regimes change. The chosen assets may contain survivorship bias. Historical prices may not capture real execution. Repeatedly redesigning a strategy after seeing out-of-sample failures can quietly turn the “test” set into another training set wearing a fake mustache.</p>
+
+        <p>An honest backtest therefore ends with uncertainty, not victory. Its job is to eliminate fragile ideas, expose assumptions, and estimate how behavior changed across conditions. A strategy that survives deserves further scrutiny—not a yacht name.</p>
+
+        <aside class="callout dark">
+          <p class="callout-label">The better standard</p>
+          <p>Use a backtest to try to disprove a strategy. If it survives, you have earned the right to test it again under conditions that are harder to flatter.</p>
+        </aside>
+
+        <p>That principle travels well beyond markets. Whether the model predicts nonprofit distress, employee turnover, or price movement, the central discipline is the same: preserve time, charge reality for showing up, separate selection from evaluation, and be deeply suspicious of results that know the ending.</p>
+
+        <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/algo-backtester">View Algo Backtester on GitHub ↗</a></div>
+      </div>
+    </article>
+  </main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer>
+  <div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- Past performance is not a personality. -->
+</body>
+</html>
