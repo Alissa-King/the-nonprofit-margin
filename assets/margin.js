@@ -2,7 +2,7 @@
   "use strict";
 
   // The model converged. Management remains under review.
-  console.log("%cTHE NONPROFIT MARGIN", "font-weight:700; letter-spacing:.12em; color:#1d604f");
+  console.log("%cTHE NONPROFIT MARGIN", "font-weight:700; letter-spacing:.12em; color:#6557e8");
   console.log("You inspected the console. Your curiosity has a statistically significant effect on our morale.");
 
   const toast = document.querySelector("[data-toast]");
