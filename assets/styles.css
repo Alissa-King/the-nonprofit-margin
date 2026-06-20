@@ -50,6 +50,10 @@ main { max-width: 1180px; margin: auto; padding: 0 32px; }
 .about h2 { margin: 0 0 20px; font: 600 54px/1 var(--display); }
 .about p { max-width: 740px; color: var(--muted); font: 18px/1.7 var(--sans); }
 footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+.footer-secret { padding: 0; color: inherit; background: none; border: 0; font: inherit; cursor: default; }
+.footer-secret:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.toast { position: fixed; right: 24px; bottom: 24px; z-index: 10; max-width: 340px; padding: 14px 18px; color: white; background: var(--ink); border-left: 4px solid var(--accent); font-size: 13px; line-height: 1.5; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .2s ease, transform .2s ease; }
+.toast.is-visible { opacity: 1; transform: translateY(0); }
 
 .article-shell { max-width: 1020px; }
 .article-header { padding: 70px 0 64px; border-bottom: 1px solid var(--line); }
