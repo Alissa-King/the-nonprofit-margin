@@ -30,7 +30,7 @@
       <div class="article-body">
         <p class="lede">Nonprofit boards rarely lack financial reports. What they often lack is time.</p>
 
-        <p>IRS Form 990 filings can surface six to eleven months after a fiscal year closes—promptly, if your definition of “prompt” has a generous confidence interval. Audited financial statements are essential, but they describe conditions that have already happened. When a cash crisis finally becomes unmistakable, the range of humane, strategic responses may have narrowed to emergency cuts, borrowing, or program closure.</p>
+        <p>IRS Form 990 filings can surface six to eleven months after a fiscal year closes. Audited financial statements are essential, but they describe conditions that have already happened. When a cash crisis finally becomes unmistakable, the range of humane, strategic responses may have narrowed to emergency cuts, borrowing, or program closure.</p>
 
         <p>I built the <a href="https://github.com/Alissa-King/BEACON">BEACON Framework</a> around a practical question: <strong>Can historical Form 990 data be turned into an early-warning signal that helps leaders intervene before distress becomes failure?</strong></p>
 
@@ -70,11 +70,11 @@
 
         <p>Logistic regression provides an interpretable baseline. Random forest and XGBoost test whether nonlinear relationships add useful discrimination. In the current framework results, random forest produced the strongest holdout AUC-ROC at 0.717, compared with 0.689 for XGBoost, and became the primary BDI model.</p>
 
-        <p>That number is evidence of moderate ranking ability, not a declaration that the problem is solved. An AUC of 0.717 is respectable; it is not a cape. AUC asks whether distressed organizations tend to receive higher scores than non-distressed organizations. It does not tell a board whether a reported 70% risk actually occurs about 70% of the time.</p>
+        <p>That number is evidence of moderate ranking ability, not a declaration that the problem is solved. AUC asks whether distressed organizations tend to receive higher scores than non-distressed organizations. It does not tell a board whether a reported 70% risk actually occurs about 70% of the time.</p>
 
         <h2>Ranking risk is not the same as measuring it</h2>
 
-        <p>For a governance tool, the difference matters. An uncalibrated model can sort cases reasonably well while being overconfident or underconfident about the probability attached to each case. Confidence without calibration is, after all, just a spreadsheet in a blazer.</p>
+        <p>For a governance tool, the difference matters. An uncalibrated model can sort cases reasonably well while being overconfident or underconfident about the probability attached to each case.</p>
 
         <p>BEACON fits an isotonic-regression calibrator on the separate 2020–2021 window. Calibration improved the reported Brier score from 0.229 to 0.195; lower is better. Only after that step does the system multiply the calibrated probability by 100 and label it as the BDI.</p>
 
@@ -89,7 +89,7 @@
 
         <p>The domains do not supply weights to the BDI formula. They are an explanatory decomposition applied after the model produces its estimate. This distinction keeps the score statistically grounded while making its drivers legible to a board or executive team.</p>
 
-        <p>It also guards against a common mistake: treating an explanation of model behavior as proof of causality. If concentrated revenue pushes a prediction upward, the correct statement is that revenue concentration contributed to this model’s risk estimate. The model has not proven that concentration caused distress or that diversification alone will prevent it. The chart may be persuasive; it has not, however, completed a randomized controlled trial.</p>
+        <p>It also guards against a common mistake: treating an explanation of model behavior as proof of causality. If concentrated revenue pushes a prediction upward, the correct statement is that revenue concentration contributed to this model’s risk estimate. The model has not proven that concentration caused distress or that diversification alone will prevent it.</p>
 
         <h2>Cross the last mile with humility</h2>
 

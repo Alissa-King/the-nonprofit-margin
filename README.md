@@ -25,7 +25,7 @@ Models are useful. Spreadsheets are useful. Neither has agreed to accept fiducia
 - [From Form 990 to Early-Warning Signal](https://alissa-king.github.io/the-nonprofit-margin/posts/from-form-990-to-early-warning-signal.html) — Building a calibrated, explainable distress index without giving it more authority than it deserves.
 - [Backtests Are Optimists With Excellent Formatting](https://alissa-king.github.io/the-nonprofit-margin/posts/backtests-are-optimists.html) — Look-ahead bias, transaction costs, walk-forward testing, and other ways reality eventually joins the meeting.
 - [Your Form 990 Is Not Your Organization](https://alissa-king.github.io/the-nonprofit-margin/posts/your-990-is-not-your-organization.html) — Why a financial health score should begin a conversation rather than end one.
-- [Confidence Without Calibration Is Just a Spreadsheet in a Blazer](https://alissa-king.github.io/the-nonprofit-margin/posts/confidence-without-calibration.html) — Why ranking risk and measuring probability are different jobs.
+- [When 70% Doesn’t Mean 70%](https://alissa-king.github.io/the-nonprofit-margin/posts/confidence-without-calibration.html) — Why ranking risk and measuring probability are different jobs.
 
 ## About Alissa
 

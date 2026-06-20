@@ -22,15 +22,15 @@
         <a class="back-link" href="../index.html">← All field notes</a>
         <p class="eyebrow">Markets · Model validation</p>
         <h1>Backtests Are Optimists With Excellent Formatting</h1>
-        <p class="dek">A strategy can predict the past with astonishing confidence. The future, citing legal advice, has declined to comment.</p>
+        <p class="dek">What honest testing requires: delayed execution, transaction costs, benchmarks, and evidence from unseen periods.</p>
         <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
       </header>
       <div class="article-body">
-        <p class="lede">Every beautiful equity curve is a story about what would have happened—provided we already knew enough to write the story.</p>
+        <p class="lede">A backtest is useful only to the extent that it reproduces the information and constraints a strategy would have faced at the time.</p>
 
         <p>Backtesting is indispensable. It is also unusually good at turning small assumptions into large fortunes, particularly when those fortunes never have to leave the browser. I built my <a href="https://github.com/Alissa-King/algo-backtester">Algo Backtester</a> to make those assumptions visible: a custom vectorized engine, transparent execution rules, transaction costs, benchmark comparisons, parameter sweeps, and anchored walk-forward analysis.</p>
 
-        <p>The goal was not to discover a money printer. The facilities team has asked us to stop calling it that. The goal was to build a system that makes a strategy work harder for the privilege of looking convincing.</p>
+        <p>The goal was to build a system that makes a strategy work harder for the privilege of looking convincing.</p>
 
         <h2>The first lie happens one bar early</h2>
 
@@ -47,7 +47,7 @@
 
         <p>A strategy that changes positions frequently does not trade for free. The backtester charges configurable basis-point costs against turnover—the absolute change in position on each bar. This means the strategy pays when it enters, exits, or changes exposure.</p>
 
-        <p>That does not reproduce every detail of live execution. Spread, slippage, market impact, taxes, borrow constraints, and partial fills can all matter. But a frictionless backtest is not an optimistic estimate of reality. It is a different universe with unusually generous market makers.</p>
+        <p>That does not reproduce every detail of live execution. Spread, slippage, market impact, taxes, borrow constraints, and partial fills can all matter. A frictionless backtest is therefore not a conservative estimate of live performance.</p>
 
         <p>Costs are especially revealing during parameter optimization. A fast-moving strategy may produce more gross opportunity and more turnover. Once costs arrive, looking irritatingly real, the apparent edge can shrink or reverse.</p>
 
