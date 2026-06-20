@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How the BEACON Distress Index turns nonprofit Form 990 data into calibrated, explainable early-warning decision support.">
+  <title>From Form 990 to Early-Warning Signal — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="../index.html">The Nonprofit Margin</a>
+    <nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav>
+  </header>
+
+  <main class="article-shell">
+    <article>
+      <header class="article-header">
+        <a class="back-link" href="../index.html">← All field notes</a>
+        <p class="eyebrow">Nonprofit resilience · Explainable AI</p>
+        <h1>From Form 990 to Early-Warning Signal</h1>
+        <p class="dek">Building the BEACON Distress Index meant solving two different problems: estimating financial distress and making that estimate useful—without giving it more authority than it deserves.</p>
+        <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 8 min read</span></div>
+      </header>
+
+      <div class="article-body">
+        <p class="lede">Nonprofit boards rarely lack financial reports. What they often lack is time.</p>
+
+        <p>IRS Form 990 filings can surface six to eleven months after a fiscal year closes. Audited financial statements are essential, but they describe conditions that have already happened. When a cash crisis finally becomes unmistakable, the range of humane, strategic responses may have narrowed to emergency cuts, borrowing, or program closure.</p>
+
+        <p>I built the <a href="https://github.com/Alissa-King/BEACON">BEACON Framework</a> around a practical question: <strong>Can historical Form 990 data be turned into an early-warning signal that helps leaders intervene before distress becomes failure?</strong></p>
+
+        <p>The answer is promising, but conditional. A useful warning system needs more than a classifier. It needs honest validation, probabilities that mean what they appear to mean, explanations that a governance team can examine, and hard boundaries around what the system cannot know.</p>
+
+        <h2>Start with the decision, not the algorithm</h2>
+
+        <p>BEACON stands for Business Early-Warning Analytics for Community Organization Navigation. Its focus is U.S. housing and human-service nonprofits—organizations that frequently operate under funding volatility while carrying responsibilities that cannot simply pause when revenue tightens.</p>
+
+        <p>The computational pipeline cleans and aligns financial observations, compares three predictive models, calibrates the selected model, and converts its estimated probability into the <strong>BEACON Distress Index</strong>, or BDI:</p>
+
+        <div class="formula" role="img" aria-label="BDI equals 100 multiplied by the calibrated probability of distress given the observed features">
+          <span>BDI</span> = 100 × P(Distress | X)<sub>calibrated</sub>
+        </div>
+
+        <p>A BDI of 70 therefore represents a calibrated estimated probability—not a weighted score assembled from arbitrary point values. The scale groups results into four communication bands: Low Risk from 0–39, Moderate from 40–59, Elevated from 60–79, and Severe from 80–100.</p>
+
+        <aside class="callout">
+          <p class="callout-label">The essential distinction</p>
+          <p>The BDI is an operational risk estimate validated against observed outcomes. It is not a complete measure of organizational health, impact, leadership quality, or mission value.</p>
+        </aside>
+
+        <h2>Make the model face forward</h2>
+
+        <p>A random train-test split would let records from later years influence model development while earlier records sat in the test set. That can produce an attractive score while failing to reproduce the actual task: learning from the past to assess a later, unseen period.</p>
+
+        <p>BEACON instead uses a temporal design. Fiscal years 2013–2019 form the training window. Years 2020–2021 are held apart for probability calibration. Years 2022–2023 are the final test window and remain unseen during model fitting. Within the training period, expanding-window time-series cross-validation preserves that same direction of travel.</p>
+
+        <figure>
+          <div class="timeline" aria-label="BEACON temporal validation design">
+            <div class="timeline-block train"><strong>Train</strong><span>2013–2019</span></div>
+            <div class="timeline-block calibrate"><strong>Calibrate</strong><span>2020–2021</span></div>
+            <div class="timeline-block test"><strong>Test</strong><span>2022–2023</span></div>
+          </div>
+          <figcaption>The final holdout simulates the real direction of use: earlier filings inform assessment of later outcomes.</figcaption>
+        </figure>
+
+        <p>Logistic regression provides an interpretable baseline. Random forest and XGBoost test whether nonlinear relationships add useful discrimination. In the current framework results, random forest produced the strongest holdout AUC-ROC at 0.717, compared with 0.689 for XGBoost, and became the primary BDI model.</p>
+
+        <p>That number is evidence of moderate ranking ability, not a declaration that the problem is solved. AUC asks whether distressed organizations tend to receive higher scores than non-distressed organizations. It does not tell a board whether a reported 70% risk actually occurs about 70% of the time.</p>
+
+        <h2>Ranking risk is not the same as measuring it</h2>
+
+        <p>For a governance tool, the difference matters. An uncalibrated model can sort cases reasonably well while being overconfident or underconfident about the probability attached to each case.</p>
+
+        <p>BEACON fits an isotonic-regression calibrator on the separate 2020–2021 window. Calibration improved the reported Brier score from 0.229 to 0.195; lower is better. Only after that step does the system multiply the calibrated probability by 100 and label it as the BDI.</p>
+
+        <figure class="chart-figure">
+          <img src="../assets/calibration-curve.png" alt="Calibration curve comparing raw and calibrated Random Forest probabilities with perfect calibration">
+          <figcaption>Calibration asks whether the probabilities correspond to observed frequencies—not merely whether cases are ranked in the right order.</figcaption>
+        </figure>
+
+        <h2>Explanation is a layer, not a causal claim</h2>
+
+        <p>A risk score without a reason is difficult to govern. BEACON uses SHAP values to show which observed financial features pushed a particular prediction higher or lower. Those features are organized after prediction into four domains: Financial Capacity, Financial Sustainability, Resource Dependence, and Organizational Risk.</p>
+
+        <p>The domains do not supply weights to the BDI formula. They are an explanatory decomposition applied after the model produces its estimate. This distinction keeps the score statistically grounded while making its drivers legible to a board or executive team.</p>
+
+        <p>It also guards against a common mistake: treating an explanation of model behavior as proof of causality. If concentrated revenue pushes a prediction upward, the correct statement is that revenue concentration contributed to this model’s risk estimate. The model has not proven that concentration caused distress or that diversification alone will prevent it.</p>
+
+        <h2>Cross the last mile with humility</h2>
+
+        <p>Prediction becomes useful only when it changes the quality or timing of a decision. BEACON’s companion layer—the BEAM Executive Action Matrix—maps prominent risk associations and BDI categories to structured responses. A liquidity signal might prompt a rolling cash forecast and more frequent board reporting. Persistent deficits might trigger program-level analysis and a time-bound recovery plan.</p>
+
+        <p>BEAM is deliberately described as a <strong>decision taxonomy</strong>, not a validated intervention model. The framework has not established that a recommended response will reduce failure rates. Context, professional judgment, stakeholder consequences, and information outside the filing remain indispensable.</p>
+
+        <aside class="callout dark">
+          <p class="callout-label">What the model should change</p>
+          <p>Not who holds authority. Not whether judgment is required. It should change how early leaders see a credible warning—and how clearly they can interrogate it.</p>
+        </aside>
+
+        <h2>What comes next</h2>
+
+        <p>The public BEACON repository includes a reproducible pipeline, tests, a dashboard, synthetic demonstration data, and pathways for working with real IRS or NCCS data. The current public demo is useful for examining the system’s behavior; it should not be mistaken for a production decision system or an independent validation on every nonprofit population.</p>
+
+        <p>The larger research agenda is longitudinal: testing performance on real-world panels, examining subgroup stability, monitoring drift, and learning whether governance teams actually make better decisions when explanations and response structures are introduced.</p>
+
+        <p>That is the standard I want to carry into this work. Early-warning analytics should be ambitious about helping people see sooner—and modest about everything a historical filing cannot reveal.</p>
+
+        <div class="article-end">
+          <p><strong>Explore the project</strong></p>
+          <a class="button" href="https://github.com/Alissa-King/BEACON">View BEACON on GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer><span>© 2026 Alissa King</span><span>Finance, data, and doing good without going broke.</span></footer>
+</body>
+</html>
