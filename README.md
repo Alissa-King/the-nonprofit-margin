@@ -4,7 +4,7 @@
 
 [Read the blog →](https://alissa-king.github.io/the-nonprofit-margin/)
 
-The Nonprofit Margin is about using data to help mission-driven organizations make earlier, clearer decisions—without asking a model to become the adult in the room.
+The Nonprofit Margin is about using data to help mission-driven organizations make earlier, clearer decisions—without quietly promoting a probability into executive authority.
 
 I write about nonprofit financial resilience, explainable AI, forecasting, governance, and the quiet assumptions hiding inside confident-looking dashboards. The code matters. So do the people expected to act on it.
 

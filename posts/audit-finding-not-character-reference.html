@@ -22,7 +22,7 @@
 
       <p>My <a href="https://github.com/Alissa-King/DBA-FAC">DBA-FAC project</a> uses Federal Audit Clearinghouse data to study whether information available before audit close can help identify elevated risk of a Single Audit finding. The intended use is triage: helping reviewers decide where limited attention may be most valuable.</p>
 
-      <p>That purpose matters. A triage model does not determine whether a finding exists, whether an organization is well managed, or whether its mission deserves support. It estimates which records resemble patterns historically associated with findings. Those are different claims, even when a dashboard places them close together.</p>
+      <p>That purpose matters. A triage model does not determine whether a finding exists, whether an organization is well managed, or whether its mission deserves support. It estimates which records resemble patterns historically associated with findings. Those are different claims, even when a dashboard places them close together. A system that prioritizes scrutiny is itself an appropriate object of scrutiny.</p>
 
       <h2>Time is part of the model</h2>
 
@@ -34,7 +34,7 @@
 
       <h2>Rare outcomes change the scorecard</h2>
 
-      <p>Findings are relatively uncommon in the project’s target population. With an imbalanced outcome, accuracy can look strong even when a model misses most of the cases that matter. Predicting “no finding” for nearly everyone is efficient in the way an unplugged smoke detector is quiet.</p>
+      <p>Findings are relatively uncommon in the project’s target population. With an imbalanced outcome, accuracy can look strong even when a model misses most of the cases that matter. A classifier can predict “no finding” for nearly everyone; the accuracy metric may remain impressed even when oversight should not.</p>
 
       <p>The project therefore reports ROC-AUC alongside precision-recall performance, calibration, confusion-matrix counts, and threshold-specific recall and precision. Its default triage threshold targets at least 80% recall: an explicit preference for finding more of the positive cases, while accepting that additional audits will be flagged unnecessarily.</p>
 

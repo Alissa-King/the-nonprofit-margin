@@ -36,7 +36,7 @@
 
       <p>GDP is published quarterly. Unemployment, CPI, and the effective federal funds rate are available at different native frequencies. The project resamples the combined data to month-end and forward-fills missing values.</p>
 
-      <p>That creates a convenient common timeline, but convenience has meaning. A quarterly GDP value repeated across subsequent monthly rows does not become monthly GDP. It remains a quarterly observation carried forward until another is available.</p>
+      <p>That creates a convenient common timeline, but convenience has meaning. A quarterly GDP value repeated across subsequent monthly rows does not become monthly GDP. It remains a quarterly observation carried forward until another is available. Resampling can align timestamps; it cannot negotiate a common publication schedule with the underlying economy.</p>
 
       <p>Mixed-frequency dashboards should make that distinction visible through labels, tooltips, stepped lines, or release-date annotations. Otherwise the smoothness of the interface may imply a measurement precision the source does not provide.</p>
 
