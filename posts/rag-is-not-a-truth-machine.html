@@ -30,7 +30,7 @@
 
       <div class="formula">PDF → chunks → embeddings → <span>top five excerpts</span> → answer</div>
 
-      <p>By the time the language model sees the document, most of the document is absent. That is the point—focused context is more useful than an indiscriminate wall of text—but it means retrieval quality sets an upper bound on answer quality. The generator cannot cite evidence it was never shown, although it may retain the confidence to try.</p>
+      <p>By the time the language model sees the document, most of the document is absent. That is the point—focused context is more useful than an indiscriminate wall of text—but it means retrieval quality sets an upper bound on answer quality. The answer may be grounded in the document. The document, unfortunately, may have been written by Legal.</p>
 
       <p>If the relevant passage ranks sixth, the generator never receives it. If a table is poorly extracted, no embedding can restore its structure. If the question uses terminology far removed from the document, semantic similarity may select adjacent rather than decisive evidence.</p>
 
