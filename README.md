@@ -29,6 +29,10 @@ Models are useful. Spreadsheets are useful. Neither has agreed to accept fiducia
 - [An Audit Finding Is Not a Character Reference](https://alissa-king.github.io/the-nonprofit-margin/posts/audit-finding-not-character-reference.html) — Using predictive audit analytics for triage without turning risk into institutional judgment.
 - [RAG Is Not a Truth Machine](https://alissa-king.github.io/the-nonprofit-margin/posts/rag-is-not-a-truth-machine.html) — Why grounded generation still depends on retrieval, context, and review.
 - [The Dashboard Is Not the Economy](https://alissa-king.github.io/the-nonprofit-margin/posts/dashboard-is-not-the-economy.html) — The analytical choices hidden inside a macroeconomic chart.
+- [Governance Starts Before Deployment](https://alissa-king.github.io/the-nonprofit-margin/posts/governance-starts-before-deployment.html) — Making intended use, validation, ownership, monitoring, and stop conditions operational.
+- [A Screener Is a Filter, Not a Forecast](https://alissa-king.github.io/the-nonprofit-margin/posts/screener-is-not-a-forecast.html) — What crypto market screens reveal and what their rankings cannot establish.
+- [An Attrition Model Is Not a Stay Interview](https://alissa-king.github.io/the-nonprofit-margin/posts/attrition-model-is-not-a-stay-interview.html) — Using people analytics to investigate working conditions without reducing employees to risk scores.
+- [A Deadline Dashboard Is an Operating Control](https://alissa-king.github.io/the-nonprofit-margin/posts/deadline-dashboard-is-an-operating-control.html) — Designing grant oversight around ownership, evidence, audit history, and fallback.
 
 ## About Alissa
 

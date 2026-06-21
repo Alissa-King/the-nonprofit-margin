@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Why a grants and finance deadline dashboard should be designed as an operating control, not merely a reminder interface.">
+  <title>A Deadline Dashboard Is an Operating Control — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3"><script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="../index.html">The Nonprofit Margin</a><nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav></header>
+  <main class="article-shell"><article>
+    <header class="article-header">
+      <a class="back-link" href="../index.html">← All field notes</a><p class="eyebrow">Finance operations · Controls</p>
+      <h1>A Deadline Dashboard Is an Operating Control</h1>
+      <p class="dek">Reliable grant oversight depends on ownership, state transitions, audit history, and fallback procedures—not merely reminders.</p>
+      <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
+    </header>
+    <div class="article-body">
+      <p class="lede">A deadline is not controlled because it appears on a screen. It is controlled when responsibility, status, evidence, and escalation are reliable.</p>
+
+      <p>My <a href="https://github.com/Alissa-King/Finance-Dashboard">Finance Dashboard</a> has developed into a multipage grants-compliance application built with Streamlit and SQLAlchemy. It organizes funders, grants, reporting requirements, generated deadlines, statuses, calendar views, imports, and audit logs.</p>
+
+      <p>The dashboard makes workload visible. Its more important contribution is the data model underneath: each deadline belongs to a grant and requirement, has a due date and state, and can retain a history of changes.</p>
+
+      <h2>The source of the deadline matters</h2>
+
+      <p>Grant deadlines may be specified as a fixed date or derived from a reporting period, frequency, and offset. The application can generate deadline instances from grant and requirement records.</p>
+
+      <p>Automation reduces repetitive entry, but it moves risk into configuration. If the reporting frequency, period end, or due-date offset is wrong, the system can generate incorrect deadlines consistently. Consistency is useful, though not always in the way intended.</p>
+
+      <p>Each generated date should therefore retain its rule source, effective period, and last verification. Material funder changes should trigger review of future instances rather than silently inheriting an outdated rule.</p>
+
+      <h2>Status is a controlled transition</h2>
+
+      <p>The project represents deadlines through states including Not Started, In Progress, Submitted, Accepted, Closed, and Overdue. These labels encode an operational workflow.</p>
+
+      <p>A production control should define who can make each transition and what evidence is required. “Submitted” may require a confirmation number or uploaded receipt. “Accepted” may require funder acknowledgment. “Closed” may require reconciliation of follow-up items.</p>
+
+      <aside class="callout"><p class="callout-label">Evidence over color</p><p>A green status should be supported by a recorded event, owner, timestamp, and—where material—submission evidence.</p></aside>
+
+      <h2>Attention needs hierarchy</h2>
+
+      <p>The dashboard distinguishes overdue items, deadlines due within seven days, and those due within 30 days. This helps convert a large calendar into a sequence of action.</p>
+
+      <p>Time remaining is only one dimension of urgency. A report tied to a major reimbursement, continuation award, or compliance requirement may deserve earlier escalation. Workload, dependency, reviewer availability, and consequence should influence prioritization alongside date.</p>
+
+      <h2>Audit history makes the control reviewable</h2>
+
+      <p>When a user changes deadline status, the application writes an audit-log entry. That creates a basis for reviewing who changed what and when. Stronger auditability would also preserve previous and new values, evidence references, actor identity, and protected retention.</p>
+
+      <p>Audit history serves operations as well as assurance. Repeated late transitions, reopened items, and deadline corrections can reveal process problems that a current-state dashboard hides.</p>
+
+      <h2>A password gate is not full access governance</h2>
+
+      <p>The Streamlit application includes a password gate for public deployment. That is a useful protective layer for a prototype. A multiuser operational system handling grant and staff information may require individual accounts, role-based permissions, secure secret management, session controls, and logs tied to authenticated users.</p>
+
+      <p>Access should follow responsibility. Someone who submits a report may not be the same person who approves it, changes requirement rules, imports records, or resets data.</p>
+
+      <h2>The manual fallback is part of the system</h2>
+
+      <p>Databases, hosting, and integrations fail. A deadline control needs an export, recovery process, backup owner, and documented way to continue critical reporting when the application is unavailable.</p>
+
+      <aside class="callout dark"><p class="callout-label">The control objective</p><p>Complete and accurate obligations are assigned, prepared, reviewed, submitted, evidenced, and escalated before their consequences arrive.</p></aside>
+
+      <p>That objective is broader than the dashboard, which is exactly why the dashboard can support it. The interface focuses attention; the data model preserves structure; the process supplies accountability.</p>
+
+      <p>Good operational software does not merely remind people that work exists. It makes the state of the work trustworthy enough to manage.</p>
+
+      <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/Finance-Dashboard">View Finance Dashboard on GitHub ↗</a></div>
+    </div>
+  </article></main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer><div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- Deadline status: read. Evidence: you reached the footer. -->
+</body>
+</html>

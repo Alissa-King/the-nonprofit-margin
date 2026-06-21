@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What cryptocurrency screeners reveal, what their rankings omit, and why live market data is not a forecast.">
+  <title>A Screener Is a Filter, Not a Forecast — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3"><script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="../index.html">The Nonprofit Margin</a><nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav></header>
+  <main class="article-shell"><article>
+    <header class="article-header">
+      <a class="back-link" href="../index.html">← All field notes</a><p class="eyebrow">Crypto · Market data</p>
+      <h1>A Screener Is a Filter, Not a Forecast</h1>
+      <p class="dek">Live prices, rankings, trends, and candles organize market information; they do not establish what happens next.</p>
+      <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
+    </header>
+    <div class="article-body">
+      <p class="lede">A market screener helps decide where to look. The harder work begins after an asset reaches the screen.</p>
+
+      <p>My <a href="https://github.com/Alissa-King/crypto-screener">Crypto Screener</a> is a Streamlit research dashboard built on CoinGecko’s public API. It presents sortable market data, trending searches, top gainers and losers, market dominance, detailed coin statistics, and OHLC candlestick charts without requiring a paid API key.</p>
+
+      <p>These views make a volatile market easier to inspect. They also demonstrate how quickly descriptive signals can acquire predictive language they have not earned.</p>
+
+      <h2>“Live” data still has a clock</h2>
+
+      <p>The app caches most market responses for 60 seconds, trending results for 120 seconds, and some slower-changing data for longer. Caching reduces pressure on a rate-limited public API and makes the dashboard more reliable. It also means every displayed value has an age.</p>
+
+      <p>For research, that delay may be negligible. For execution, it may not be. A trustworthy interface should distinguish observation time, retrieval time, and display time, particularly when markets move faster than the refresh interval.</p>
+
+      <aside class="callout"><p class="callout-label">Data freshness</p><p>“Current” should mean an explicit timestamp and source—not simply that the number changed when the page refreshed.</p></aside>
+
+      <h2>Trending measures attention</h2>
+
+      <p>The trending view shows coins receiving the most CoinGecko search attention. That can identify where interest is concentrating. It does not establish whether the attention is informed, durable, favorable, or already reflected in price.</p>
+
+      <p>Search popularity can rise because of adoption, a listing, a sharp rally, a sharp collapse, litigation, or a spelling problem. The measure describes attention. Interpretation requires outside evidence.</p>
+
+      <h2>Top movers begin with a selected universe</h2>
+
+      <p>The gainers and losers view ranks 24-hour changes among the top 100 coins by market capitalization. This is a sensible way to avoid an unbounded list of illiquid assets, but it creates a specific research universe.</p>
+
+      <p>Results are conditional on inclusion in that universe and availability from the provider. Market-cap rankings change. New or failed assets enter and leave. A historical study based only on today’s survivors would overstate what an investor could have known and selected at the time.</p>
+
+      <h2>A candle compresses the path</h2>
+
+      <p>OHLC charts summarize each interval through open, high, low, and close. They are compact and useful. They omit the sequence of trades inside the interval, liquidity, spread, venue differences, and whether the quoted move could have been executed at meaningful size.</p>
+
+      <p>Similarly, a positive seven-day return is momentum observed, not momentum guaranteed. Turning a descriptive threshold into a strategy requires a defined rule, transaction costs, delayed execution, and out-of-sample testing—the same disciplines used in a defensible backtest.</p>
+
+      <h2>Provider behavior is part of the product</h2>
+
+      <p>Public APIs impose rate limits, change schemas, return missing fields, and occasionally fail. The app uses timeouts, caching, and explicit rate-limit messages. A production research tool would also benefit from response validation, source timestamps, stale-data indicators, retry policy, and monitoring for provider changes.</p>
+
+      <p>The absence of an API fee does not make data free of operational cost. Someone still has to notice when the field formerly known as <code>market_cap</code> has become null across the entire screen.</p>
+
+      <aside class="callout dark"><p class="callout-label">The responsible claim</p><p>A screener organizes observations and generates research candidates. It does not estimate expected return, establish causality, or recommend a trade.</p></aside>
+
+      <p>The dashboard is most useful when it preserves that boundary. Let rankings direct attention, let charts expose context, and let a separate, testable process decide whether any pattern is worth acting on.</p>
+
+      <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/crypto-screener">View Crypto Screener on GitHub ↗</a></div>
+    </div>
+  </article></main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer><div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- Past performance remains stubbornly historical. -->
+</body>
+</html>

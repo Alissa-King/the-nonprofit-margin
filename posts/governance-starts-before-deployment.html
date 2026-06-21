@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Why model governance must shape intended use, validation, ownership, monitoring, and stop conditions before deployment.">
+  <title>Governance Starts Before Deployment — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3"><script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="../index.html">The Nonprofit Margin</a><nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav></header>
+  <main class="article-shell"><article>
+    <header class="article-header">
+      <a class="back-link" href="../index.html">← All field notes</a><p class="eyebrow">Responsible AI · Operations</p>
+      <h1>Governance Starts Before Deployment</h1>
+      <p class="dek">A model card is useful only when ownership, evidence, controls, and stop conditions shape the system itself.</p>
+      <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
+    </header>
+    <div class="article-body">
+      <p class="lede">Model governance is the practice of deciding what a system may do, what evidence it needs, who remains accountable, and when its authority ends.</p>
+
+      <p>I built the <a href="https://github.com/Alissa-King/model-governance-kit">Model Governance Kit</a> for teams that need a practical way to make those decisions visible. It includes templates for a model card, validation plan, risk register, monitoring plan, decision log, incident report, board brief, and pre-deployment gate.</p>
+
+      <p>The repository also includes a small Python CLI that creates governance packs and checks whether required documents exist and template placeholders have been resolved. This is deliberately modest automation. A checker can confirm that a risk register exists. It cannot determine whether anyone has described the risk honestly.</p>
+
+      <h2>Begin with the decision</h2>
+
+      <p>Teams often begin governance by documenting the model: algorithm, features, metrics, and version. Those details matter, but the first question is operational: what decision will this system support?</p>
+
+      <p>A distress model used to prioritize voluntary financial review carries different consequences from the same score used to deny funding. A language model used to summarize internal notes carries different risks from one that communicates directly with clients. Governance cannot be separated from intended use because risk lives in the relationship between an output and an action.</p>
+
+      <aside class="callout"><p class="callout-label">Define before measuring</p><p>Name the user, population, decision, output, human action, prohibited uses, and affected parties before selecting an acceptance metric.</p></aside>
+
+      <h2>Validation is a claim with boundaries</h2>
+
+      <p>A validation plan should state the narrow claim the evidence is meant to support. It should identify baselines, temporal or external holdouts, thresholds, calibration, subgroup checks, failure analysis, and acceptance criteria before final evaluation.</p>
+
+      <p>This protects against a common drift in reasoning: a model performs well on one dataset, therefore it is described as accurate; it is accurate, therefore it is treated as fair; it is treated as fair, therefore deployment is assumed to be safe. Each step requires different evidence.</p>
+
+      <p>Generative systems add further distinctions. Retrieval quality, groundedness, citation correctness, refusal behavior, privacy leakage, and prompt injection are separate failure modes. One aggregate score is unlikely to supervise all of them effectively.</p>
+
+      <h2>A risk register needs owners and actions</h2>
+
+      <p>Listing abstract risks is not the same as controlling them. A useful risk register connects a plausible harm and affected party to its cause, severity, likelihood, controls, residual risk, accountable owner, and review date.</p>
+
+      <p>Residual risk deserves particular attention. Controls rarely reduce risk to zero. Someone with appropriate authority must decide whether what remains is acceptable, under which conditions, and for how long. “Low” is a category, not an argument.</p>
+
+      <h2>Human oversight must be operational</h2>
+
+      <p>Many systems claim to keep a human in the loop. The phrase is incomplete without details. Does the reviewer understand the output? Do they see uncertainty and relevant source information? Do they have time to investigate? Can they override the result without penalty? Is disagreement recorded and examined?</p>
+
+      <p>A reviewer without information or authority is not a control. They are a witness.</p>
+
+      <h2>Monitoring includes the surrounding system</h2>
+
+      <p>Post-deployment monitoring should cover more than model accuracy. Input completeness, feature or context drift, calibration, subgroup performance, overrides, appeals, service failures, and incidents can all reveal degradation.</p>
+
+      <p>Some outcomes arrive months later. The monitoring plan should distinguish leading operational indicators from delayed ground truth and define warning triggers, stop triggers, owners, rollback procedures, and manual fallback. A dashboard that turns red without naming who responds has completed only the decorative portion of monitoring.</p>
+
+      <aside class="callout dark"><p class="callout-label">The central requirement</p><p>Every material threshold, exception, approval, residual risk, and stop condition needs an accountable owner with the authority to act.</p></aside>
+
+      <h2>Templates reveal gaps; they do not close them</h2>
+
+      <p>The kit is intentionally framework-neutral. It can support predictive or generative systems and can be adapted to an organization’s legal, regulatory, and operational context. It is not a compliance certification or proof that a model is fair, safe, or effective.</p>
+
+      <p>Its value is more practical: it creates a shared structure for evidence and decisions. Governance becomes useful when these artifacts are reviewed, challenged, updated, and connected to release and incident processes—not when they are completed once and stored beside a file named <code>final_v7_really_final.pdf</code>.</p>
+
+      <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/model-governance-kit">View Model Governance Kit on GitHub ↗</a></div>
+    </div>
+  </article></main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer><div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- Control status: present. Control effectiveness: requires evidence. -->
+</body>
+</html>

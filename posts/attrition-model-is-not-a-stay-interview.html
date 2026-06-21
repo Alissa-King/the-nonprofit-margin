@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How employee attrition models can support organizational inquiry without reducing people to risk scores.">
+  <title>An Attrition Model Is Not a Stay Interview — The Nonprofit Margin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260620-3"><script src="../assets/margin.js?v=20260620-3" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="wordmark" href="../index.html">The Nonprofit Margin</a><nav aria-label="Primary navigation"><a href="../index.html#about">About</a><a href="https://github.com/Alissa-King">GitHub</a></nav></header>
+  <main class="article-shell"><article>
+    <header class="article-header">
+      <a class="back-link" href="../index.html">← All field notes</a><p class="eyebrow">People analytics · Machine learning</p>
+      <h1>An Attrition Model Is Not a Stay Interview</h1>
+      <p class="dek">Employee-risk models can identify patterns while missing the history, power, and conversation behind a departure.</p>
+      <div class="byline"><span>By Alissa King</span><span>June 20, 2026 · 7 min read</span></div>
+    </header>
+    <div class="article-body">
+      <p class="lede">Attrition prediction is technically a classification problem and operationally a decision about people.</p>
+
+      <p>My <a href="https://github.com/Alissa-King/Employee-Retention-Prediction">Employee Retention Prediction</a> project uses the IBM HR Analytics dataset to compare logistic regression, random forest, and XGBoost models. It preprocesses categorical variables, evaluates a held-out test split, examines confusion matrices and feature importance, and uses SHAP to inspect the XGBoost model.</p>
+
+      <p>As a learning project, it demonstrates an end-to-end modeling workflow. As a prospective workplace system, it also raises questions that accuracy alone cannot answer.</p>
+
+      <h2>The label records an outcome, not a reason</h2>
+
+      <p>The target indicates whether an employee left. It does not fully explain why. Departure may reflect compensation, management, opportunity, health, caregiving, discrimination, relocation, organizational change, or circumstances absent from the dataset.</p>
+
+      <p>A model can learn associations with the recorded outcome while missing the mechanism. That matters because retention action follows an implicit causal claim: if we change this condition, the employee may be more likely to stay. Prediction does not establish that claim.</p>
+
+      <aside class="callout"><p class="callout-label">Keep the questions separate</p><p>Who appears more likely to leave? Why are people leaving? Which intervention would improve their experience? These require different evidence.</p></aside>
+
+      <h2>Accuracy can favor the majority</h2>
+
+      <p>Employee departures are often less common than non-departures. In an imbalanced dataset, a model can achieve high accuracy while identifying relatively few employees who leave.</p>
+
+      <p>Confusion matrices and classification reports help reveal this. A stronger evaluation would pre-register recall and precision goals, report ROC and precision-recall curves, evaluate probability calibration, and use repeated or stratified cross-validation. The threshold should reflect what the organization will do with the score and the harm of false positives and false negatives.</p>
+
+      <h2>Random splits assume a stable world</h2>
+
+      <p>The project uses an 80/20 random train-test split. That is appropriate for an instructional comparison, but a workplace deployment may require temporal validation: train on earlier periods and evaluate on later cohorts.</p>
+
+      <p>Policies, managers, labor markets, and employee expectations change. A model that recognizes one period may not generalize to the next. If multiple records exist for an employee or team, grouped splitting may also be necessary to prevent closely related observations from appearing on both sides of evaluation.</p>
+
+      <h2>Feature importance is not a management prescription</h2>
+
+      <p>Logistic coefficients, tree feature importance, and SHAP values describe how inputs relate to model behavior. They do not prove that a feature caused attrition or that changing it will improve retention.</p>
+
+      <p>Some features may act as proxies for protected characteristics or historical inequity. Others may reflect decisions already made by management. A model can reproduce those patterns with excellent technical consistency.</p>
+
+      <h2>The unit of intervention matters</h2>
+
+      <p>Individual risk scores create a danger of differential treatment: fewer opportunities, intrusive outreach, or preemptive replacement for employees labeled likely to leave. Those responses can create the outcome the model appeared to predict.</p>
+
+      <p>A safer initial use is often aggregate. Examine patterns across roles, tenure bands, workload, compensation, and teams; combine them with surveys, stay interviews, exit interviews, and qualitative review; then design system-level improvements available to everyone affected.</p>
+
+      <aside class="callout dark"><p class="callout-label">The governance boundary</p><p>Use people analytics to investigate working conditions, not to convert uncertainty about an employee into an adverse decision about them.</p></aside>
+
+      <p>Before any real deployment, the project would need current and representative data, a lawful and transparent purpose, privacy controls, fairness evaluation, calibrated probabilities, monitoring, an appeal path, and meaningful employee participation in system design.</p>
+
+      <p>The model can help identify where to ask better questions. It cannot conduct the conversation in which the useful answers are likely to appear.</p>
+
+      <div class="article-end"><p><strong>Explore the project</strong></p><a class="button" href="https://github.com/Alissa-King/Employee-Retention-Prediction">View Employee Retention Prediction on GitHub ↗</a></div>
+    </div>
+  </article></main>
+  <footer><span>© 2026 Alissa King</span><button class="footer-secret" type="button" data-footer-secret>Finance, data, and doing good without going broke.</button></footer><div class="toast" role="status" aria-live="polite" data-toast></div>
+  <!-- EmployeeNumber was dropped. Employee context was not thereby recovered. -->
+</body>
+</html>
